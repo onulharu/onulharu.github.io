@@ -3,163 +3,194 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>오늘하루 · onulharu</title>
-  <meta name="description" content="오늘 막연히, 문득 하고 싶을 만한 것들의 목록. 오늘하루." />
-  <meta property="og:title" content="오늘하루 · onulharu" />
-  <meta property="og:description" content="오늘 막연히, 문득 하고 싶을 만한 것들의 목록." />
-  <meta property="og:url" content="https://onulharu.com" />
+  <title>오늘하루 소개 · onulharu</title>
+  <meta name="description" content="오늘 막연히, 문득 하고 싶은 것들. 공연·전시·팝업·모임을 순위로 한눈에 보여주는 오늘하루를 소개합니다." />
+  <meta property="og:title" content="오늘하루 — 오늘, 문득 하고 싶은 것들" />
+  <meta property="og:description" content="공연·전시·팝업·모임을 종합·카테고리별 순위로 한눈에." />
+  <meta property="og:url" content="https://onulharu.github.io" />
   <meta property="og:type" content="website" />
-  <link rel="canonical" href="https://onulharu.com" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☀️</text></svg>" />
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☁️</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #fdfaf5;
-      --text: #2b2b2b;
-      --sub: #7a7468;
-      --accent: #f2994a;
-      --card: #ffffff;
-      --line: #eee6da;
-    }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #1b1a18;
-        --text: #f1ede6;
-        --sub: #a39d92;
-        --card: #252320;
-        --line: #34312c;
-      }
+      --brand-50: #f0f9ff; --brand-100: #e0f2fe; --brand-300: #7dd3fc;
+      --brand-500: #0ea5e9; --brand-700: #0369a1;
+      --ink-400: #8093ab; --ink-500: #5c7088; --ink-900: #0b2540;
+      --bg-base: #f6fbff; --bg-surface: #fff;
+      --hot: #ff4d6d;
+      --line: rgba(11,37,64,.08);
+      --shadow-md: 0 4px 14px rgba(14,165,233,.08), 0 12px 32px rgba(14,165,233,.06);
+      --shadow-lg: 0 12px 24px rgba(14,165,233,.1), 0 28px 60px rgba(14,165,233,.08);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-      background: var(--bg);
-      color: var(--text);
+      font-family: "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
+      background: var(--bg-base);
+      color: var(--ink-900);
       line-height: 1.7;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 0 20px;
+      -webkit-font-smoothing: antialiased;
     }
-    main { width: 100%; max-width: 640px; flex: 1; }
-    header { padding: 96px 0 48px; text-align: center; }
-    .sun { font-size: 56px; display: inline-block; animation: float 4s ease-in-out infinite; }
-    @keyframes float { 50% { transform: translateY(-8px); } }
-    h1 { font-size: 40px; font-weight: 800; letter-spacing: -0.03em; margin-top: 12px; }
-    h1 small { display: block; font-size: 15px; font-weight: 500; color: var(--sub); letter-spacing: 0.1em; }
-    .tagline { margin-top: 20px; font-size: 18px; color: var(--sub); }
-    .tagline em { font-style: normal; color: var(--accent); font-weight: 700; }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
 
-    section { margin-bottom: 56px; }
-    h2 { font-size: 14px; color: var(--sub); font-weight: 600; letter-spacing: 0.08em; margin-bottom: 16px; }
-
-    .pick {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      padding: 36px 28px;
-      text-align: center;
+    header { position: sticky; top: 0; z-index: 10; backdrop-filter: blur(12px); background: rgba(246,251,255,.8); border-bottom: 1px solid var(--line); }
+    header .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .logo { display: flex; align-items: center; gap: 8px; font-weight: 900; font-size: 20px; letter-spacing: -0.02em; }
+    .logo span:first-child { font-size: 24px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--brand-500); color: #fff; font-weight: 700;
+      padding: 10px 20px; border-radius: 999px; font-size: 15px;
+      transition: background .2s, transform .2s;
     }
-    .pick .emoji { font-size: 44px; }
-    .pick .what { font-size: 22px; font-weight: 700; margin-top: 8px; min-height: 2em; }
-    .pick button {
-      margin-top: 20px;
-      background: var(--accent);
-      color: #fff;
-      border: 0;
-      border-radius: 999px;
-      padding: 12px 28px;
-      font: inherit;
-      font-weight: 600;
-      cursor: pointer;
-      transition: transform .15s;
-    }
-    .pick button:hover { transform: scale(1.04); }
+    .btn:hover { background: var(--brand-700); transform: translateY(-1px); }
+    .btn.lg { padding: 16px 32px; font-size: 17px; box-shadow: var(--shadow-lg); }
 
-    ul.list { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; }
-    ul.list li {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 14px 16px;
-      font-size: 15px;
-    }
-    .about p { color: var(--sub); }
-    .about p + p { margin-top: 10px; }
+    .hero { position: relative; overflow: hidden; padding: 100px 0 90px; text-align: center; background: linear-gradient(180deg, var(--brand-50), var(--bg-base)); }
+    .cloud { position: absolute; font-size: 80px; opacity: .35; animation: drift 14s ease-in-out infinite; pointer-events: none; }
+    .cloud.c1 { top: 40px; left: 6%; }
+    .cloud.c2 { top: 160px; right: 8%; font-size: 56px; animation-delay: -5s; }
+    .cloud.c3 { bottom: 30px; left: 22%; font-size: 44px; animation-delay: -9s; }
+    @keyframes drift { 50% { transform: translateX(24px); } }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; background: var(--bg-surface); border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; font-size: 13px; font-weight: 700; color: var(--brand-700); }
+    .eyebrow i { width: 8px; height: 8px; border-radius: 50%; background: var(--hot); animation: pulse 1.6s infinite; }
+    @keyframes pulse { 50% { opacity: .3; } }
+    .hero h1 { font-size: clamp(36px, 7vw, 60px); font-weight: 900; line-height: 1.25; letter-spacing: -0.04em; margin: 24px 0 20px; }
+    .hero h1 em { font-style: normal; background: linear-gradient(90deg, var(--brand-500), #6366f1); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero p { font-size: 18px; color: var(--ink-500); margin-bottom: 36px; }
 
-    footer { padding: 40px 0; font-size: 13px; color: var(--sub); text-align: center; }
-    footer a { color: inherit; }
+    section.block { padding: 72px 0; }
+    .head { text-align: center; margin-bottom: 40px; }
+    .head small { color: var(--brand-500); font-weight: 700; font-size: 14px; letter-spacing: .08em; }
+    .head h2 { font-size: clamp(26px, 4vw, 34px); font-weight: 900; letter-spacing: -0.03em; margin-top: 6px; }
+    .head p { color: var(--ink-500); margin-top: 8px; }
+
+    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+    .card { background: var(--bg-surface); border: 1px solid var(--line); border-radius: 24px; padding: 28px; box-shadow: var(--shadow-md); }
+    .card .ico { width: 52px; height: 52px; border-radius: 16px; background: var(--brand-100); display: grid; place-items: center; font-size: 26px; margin-bottom: 16px; }
+    .card h3 { font-size: 19px; font-weight: 700; margin-bottom: 6px; }
+    .card p { color: var(--ink-500); font-size: 15px; }
+
+    .cats { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
+    .cat { display: flex; align-items: center; gap: 12px; background: var(--bg-surface); border: 1px solid var(--line); border-radius: 18px; padding: 16px 18px; font-weight: 700; transition: border-color .2s, transform .2s, box-shadow .2s; }
+    .cat:hover { border-color: var(--brand-300); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .cat span { font-size: 24px; }
+
+    .rank { max-width: 560px; margin: 0 auto; background: var(--bg-surface); border-radius: 24px; box-shadow: var(--shadow-lg); border: 1px solid var(--line); padding: 10px; }
+    .row { display: flex; align-items: center; gap: 16px; padding: 14px 16px; }
+    .row + .row { border-top: 1px solid var(--line); }
+    .no { width: 28px; font-weight: 900; font-size: 20px; color: var(--brand-500); text-align: center; }
+    .body { flex: 1; min-width: 0; }
+    .body b { display: block; font-weight: 700; }
+    .body small { color: var(--ink-400); font-size: 13px; }
+    .hot { font-size: 12px; font-weight: 700; color: var(--hot); background: #fff0f3; padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+    .note { text-align: center; color: var(--ink-400); font-size: 13px; margin-top: 14px; }
+
+    .cta { text-align: center; background: linear-gradient(135deg, var(--brand-500), #6366f1); color: #fff; border-radius: 32px; padding: 64px 24px; margin: 24px 0 80px; }
+    .cta h2 { font-size: clamp(26px, 4vw, 36px); font-weight: 900; letter-spacing: -0.03em; }
+    .cta p { opacity: .9; margin: 10px 0 28px; }
+    .cta .btn { background: #fff; color: var(--brand-700); }
+    .cta .btn:hover { background: var(--brand-50); }
+
+    footer { border-top: 1px solid var(--line); padding: 32px 0; text-align: center; color: var(--ink-400); font-size: 14px; }
+    footer a { color: var(--brand-700); font-weight: 500; }
   </style>
 </head>
 <body>
-  <main>
-    <header>
-      <div class="sun">☀️</div>
-      <h1><small>ONULHARU</small>오늘하루</h1>
-      <p class="tagline">오늘, <em>막연히</em>, <em>문득</em> 하고 싶어지는 것들</p>
-    </header>
+  <header>
+    <div class="wrap">
+      <a class="logo" href="https://onulharu.com"><span>☁️</span><span>오늘하루</span></a>
+      <a class="btn" href="https://onulharu.com">바로가기 →</a>
+    </div>
+  </header>
 
-    <section>
-      <h2>오늘의 하나</h2>
-      <div class="pick">
-        <div class="emoji" id="emoji">🌿</div>
-        <div class="what" id="what">버튼을 눌러 오늘 할 일을 골라보세요</div>
-        <button id="again" type="button">문득, 하나 뽑기</button>
+  <section class="hero">
+    <span class="cloud c1">☁️</span><span class="cloud c2">☁️</span><span class="cloud c3">☁️</span>
+    <div class="wrap">
+      <span class="eyebrow"><i></i>오늘의 핫 랭킹</span>
+      <h1>오늘, 막연히<br /><em>문득 하고 싶은 것들</em></h1>
+      <p>뭘 할지 정하지 않은 날, 지금 가장 핫한 공연·전시·팝업·모임을<br />순위로 한눈에 보고 가볍게 골라보세요.</p>
+      <a class="btn lg" href="https://onulharu.com">오늘하루 시작하기 →</a>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="head">
+        <small>WHAT WE DO</small>
+        <h2>오늘하루는 이런 곳이에요</h2>
       </div>
-    </section>
+      <div class="features">
+        <div class="card">
+          <div class="ico">🔥</div>
+          <h3>종합 핫 랭킹</h3>
+          <p>지금 사람들이 가장 많이 찾는 것들을 종합 Top 10으로 모아 보여드려요.</p>
+        </div>
+        <div class="card">
+          <div class="ico">🧭</div>
+          <h3>카테고리 탐색</h3>
+          <p>공연, 전시, 팝업, 모임까지. 관심 있는 분야에서 가볍게 시작해보세요.</p>
+        </div>
+        <div class="card">
+          <div class="ico">⏰</div>
+          <h3>대기 일정</h3>
+          <p>곧 열릴 일정을 미리 확인하고 놓치지 않도록 챙겨보세요.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <section>
-      <h2>이런 것들이 있어요</h2>
-      <ul class="list" id="list"></ul>
-    </section>
+  <section class="block" style="background: var(--brand-50);">
+    <div class="wrap">
+      <div class="head">
+        <small>CATEGORIES</small>
+        <h2>무엇이든 문득, 골라보세요</h2>
+        <p>카테고리별 인기 순위를 한눈에 확인할 수 있어요.</p>
+      </div>
+      <div class="cats">
+        <a class="cat" href="https://onulharu.com/category/performance"><span>🎭</span>공연</a>
+        <a class="cat" href="https://onulharu.com/category/exhibition"><span>🎨</span>전시</a>
+        <a class="cat" href="https://onulharu.com/explore"><span>🛍️</span>팝업스토어</a>
+        <a class="cat" href="https://onulharu.com/explore"><span>🎪</span>박람회·페스티벌</a>
+        <a class="cat" href="https://onulharu.com/explore"><span>🛠️</span>워크샵·클래스</a>
+        <a class="cat" href="https://onulharu.com/explore"><span>🎓</span>세미나·강좌</a>
+        <a class="cat" href="https://onulharu.com/explore"><span>👥</span>모임·네트워킹</a>
+        <a class="cat" href="https://onulharu.com/explore"><span>✨</span>그 외</a>
+      </div>
+    </div>
+  </section>
 
-    <section class="about">
-      <h2>오늘하루는</h2>
-      <p>특별한 계획은 없지만 뭔가 하고 싶은 날이 있습니다. 그럴 때 가볍게 들여다볼 수 있는 목록을 모아두는 곳이에요.</p>
-      <p>거창하지 않아도 괜찮아요. 오늘 하루를 조금 더 내 것으로 만들어 줄 작은 일들을 소개합니다.</p>
-    </section>
-  </main>
+  <section class="block">
+    <div class="wrap">
+      <div class="head">
+        <small>PREVIEW</small>
+        <h2>이렇게 보여드려요</h2>
+        <p>흐름을 따라 지금 뜨는 것들을 순위로 확인하세요.</p>
+      </div>
+      <div class="rank">
+        <div class="row"><span class="no">1</span><div class="body"><b>인기 내한 공연</b><small>공연 · 서울</small></div><span class="hot">🔥 HOT</span></div>
+        <div class="row"><span class="no">2</span><div class="body"><b>화제의 명화 특별전</b><small>전시 · 서울</small></div><span class="hot">🔥 HOT</span></div>
+        <div class="row"><span class="no">3</span><div class="body"><b>브랜드 한정 팝업스토어</b><small>팝업 · 서울</small></div><span class="hot">🔥 HOT</span></div>
+        <div class="row"><span class="no">4</span><div class="body"><b>주말 음악 페스티벌</b><small>페스티벌 · 경기</small></div><span class="hot">🔥 HOT</span></div>
+        <div class="row"><span class="no">5</span><div class="body"><b>퇴근 후 원데이 클래스</b><small>워크샵 · 서울</small></div><span class="hot">🔥 HOT</span></div>
+      </div>
+      <p class="note">* 예시 화면입니다. 실시간 순위는 onulharu.com에서 확인하세요.</p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="cta">
+      <h2>오늘은 무엇을 해볼까요?</h2>
+      <p>가고 싶은 곳도, 남기고 싶은 순간도 — 오늘하루에서 찾아보세요.</p>
+      <a class="btn lg" href="https://onulharu.com">onulharu.com 바로가기 →</a>
+    </div>
+  </div>
 
   <footer>
-    © <span id="year"></span> 오늘하루 · <a href="https://onulharu.com">onulharu.com</a>
+    <div class="wrap">© <span id="y"></span> 오늘하루 · <a href="https://onulharu.com">onulharu.com</a></div>
   </footer>
-
-  <script>
-    const ideas = [
-      ["☕", "처음 가보는 카페에서 커피 한 잔"],
-      ["🚶", "모르는 골목으로 30분 산책하기"],
-      ["📚", "서점에서 제목만 보고 책 한 권 고르기"],
-      ["🍳", "냉장고 속 재료로 새로운 요리 만들기"],
-      ["🎬", "오래전 좋아했던 영화 다시 보기"],
-      ["✍️", "오늘 있었던 일 세 줄 일기 쓰기"],
-      ["🌅", "노을 지는 시간에 맞춰 밖에 나가기"],
-      ["🎧", "안 들어본 장르의 음악 앨범 하나 듣기"],
-      ["🧹", "방 한 구석만 깨끗하게 정리하기"],
-      ["📮", "오랜만에 친구에게 먼저 연락하기"],
-      ["🚌", "버스 종점까지 가보기"],
-      ["🌱", "작은 화분 하나 들이기"],
-      ["📷", "오늘의 하늘 사진 찍기"],
-      ["🧘", "10분 동안 아무것도 안 하고 멍때리기"],
-      ["🍦", "편의점 신상 아이스크림 먹어보기"],
-      ["🎨", "낙서처럼 그림 하나 그려보기"]
-    ];
-    const list = document.getElementById("list");
-    ideas.forEach(([e, t]) => {
-      const li = document.createElement("li");
-      li.textContent = `${e} ${t}`;
-      list.appendChild(li);
-    });
-    let last = -1;
-    document.getElementById("again").addEventListener("click", () => {
-      let i;
-      do { i = Math.floor(Math.random() * ideas.length); } while (i === last && ideas.length > 1);
-      last = i;
-      document.getElementById("emoji").textContent = ideas[i][0];
-      document.getElementById("what").textContent = ideas[i][1];
-    });
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
 </body>
 </html>
